@@ -4,7 +4,7 @@ const form = document.querySelector('.form');
 
 const errors = {
   login: {
-    valueMissing: 'Эй, представтесь, пожалуйста!',
+    valueMissing: 'Представтесь, пожалуйста!',
   },
   email: {
     valueMissing: 'Нам потребуется электропочта...',
