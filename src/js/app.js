@@ -115,10 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (formData) {
+    console.log(formData);
     Object.keys(formData).forEach((key) => {
-      console.log(Object.keys(formData).forEach((key)));
-      // console.log(form.querySelector('[name="${key}"]'));
-      form.querySelector('[name="${key}"]').value = formData[key];
+      form.querySelector(`[name="${key}"]`).value = formData[key];
     });
   }
 });
