@@ -1,5 +1,3 @@
-// import { Tooltip } from "./tooltip";
-
 import Tooltip from './tooltip';
 
 const form = document.querySelector('.form');
@@ -90,3 +88,37 @@ const elementOnBlur = (e) => {
 form.elements.forEach((el) => el.addEventListener('focus', () => {
   el.addEventListener('blur', elementOnBlur);
 }));
+
+window.addEventListener('beforeunload', () => {
+  const formData = {};
+
+  form.elements.forEach((el) => {
+    if (!el.name) {
+      return;
+    }
+
+    formData[el.name] = el.value;
+  });
+
+  localStorage.setItem('formData', JSON.stringify(formData));
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const json = localStorage.getItem('formData');
+
+  let formData;
+
+  try {
+    formData = JSON.parse(json);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (formData) {
+    Object.keys(formData).forEach((key) => {
+      console.log(Object.keys(formData).forEach((key)));
+      // console.log(form.querySelector('[name="${key}"]'));
+      form.querySelector('[name="${key}"]').value = formData[key];
+    });
+  }
+});
