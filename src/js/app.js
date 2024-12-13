@@ -1,8 +1,6 @@
-
-
 // import { Tooltip } from "./tooltip";
 
-import { Tooltip } from "./tooltip";
+import Tooltip from './tooltip';
 
 const form = document.querySelector('.form');
 
@@ -29,7 +27,7 @@ const showTooltip = (message, el) => {
     name: el.name,
     id: tooltipFactory.showTooltip(message, el),
   });
-}
+};
 
 const getError = (el) => {
   const errorKey = Object.keys(ValidityState.prototype).find((key) => {
@@ -50,15 +48,15 @@ form.addEventListener('submit', (e) => {
   actuaMessages.forEach((message) => tooltipFactory.removeTooltip(message.id));
   actuaMessages = [];
 
-    if (form.checkVisibility()) {
-      console.log('valid');
-    } else {
-      console.log('invalid');
-    }
+  if (form.checkVisibility()) {
+    console.log('valid');
+  } else {
+    console.log('invalid');
+  }
 
   const alements = form.elements; // console.dir(alements);
 
-  [...alements].some(elem => {
+  [...alements].some((elem) => {
     const error = getError(elem);
 
     if (error) {
@@ -79,7 +77,7 @@ const elementOnBlur = (e) => {
   if (error) {
     showTooltip(error, el);
   } else {
-    const currentErrorMessage = actuaMessages.find(item => item.name === el.name);
+    const currentErrorMessage = actuaMessages.find((item) => item.name === el.name);
 
     if (currentErrorMessage) {
       tooltipFactory.removeTooltip(currentErrorMessage.id);
@@ -89,6 +87,6 @@ const elementOnBlur = (e) => {
   el.removeEventListener('blur', elementOnBlur);
 };
 
-form.elements.forEach(el =>el.addEventListener('focus', () => {
+form.elements.forEach((el) => el.addEventListener('focus', () => {
   el.addEventListener('blur', elementOnBlur);
 }));
